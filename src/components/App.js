@@ -1,9 +1,11 @@
 import Layout from './Layout/Layout';
 import Comp from './Comp';
 import Counter from './Counter';
+import CounterReducer from './CounterReducer';
 import Clock from './Clock';
 import Color from './Color';
 import Task from './Task';
+import Friends from './Friends';
 
 import './App.css';
 
@@ -22,8 +24,10 @@ function App() {
       <Comp />
       <Color options={options} />
       <Counter />
+      <CounterReducer />
       <Task />
       <Clock />
+      <Friends />
     </Layout>
   );
 }

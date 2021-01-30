@@ -21,3 +21,23 @@ input {
   padding: 20px;
   margin-bottom: 20px;
 }
+
+.FriendsBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.FriendsBox div {
+  width: 33%;
+  text-align: left;
+  padding-left: 9%;
+}
+
+.InputBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.InputBox input {
+  width: 33%;
+}

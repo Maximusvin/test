@@ -1,14 +1,8 @@
-import { useState, useEffect } from 'react';
+import useLocalStorage from '../Hooks/useLocalStorage';
 import './App.css';
 
 const Task = () => {
-  const [text, setText] = useState(() =>
-    JSON.parse(localStorage.getItem('text' ?? '')),
-  );
-
-  useEffect(() => {
-    window.localStorage.setItem('text', JSON.stringify(text));
-  }, [text]);
+  const [text, setText] = useLocalStorage('text');
 
   const handleChange = event => {
     setText(event.target.value);

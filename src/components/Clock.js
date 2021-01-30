@@ -11,6 +11,7 @@ const Clock = () => {
     }, 1000);
 
     return () => {
+      console.log('stop');
       stop();
     };
   }, []);
