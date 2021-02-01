@@ -1,3 +1,5 @@
+import { Route, Switch } from 'react-router-dom';
+
 import Layout from './Layout/Layout';
 import Comp from './Comp';
 import Counter from './Counter';
@@ -6,6 +8,12 @@ import Clock from './Clock';
 import Color from './Color';
 import Task from './Task';
 import Friends from './Friends';
+import Navigation from './Navigation/Navigation';
+import AppBar from './AppBar';
+import NotFoundView from '../views/NotFoundView';
+import FriendCard from './FriendCard';
+import TableView from '../views/TableView';
+import BasicTable from './TableFriends/BasicTable';
 
 import './App.css';
 
@@ -20,14 +28,43 @@ const options = [
 function App() {
   return (
     <Layout>
-      <h1>Home Work #2.2</h1>
-      <Comp />
-      <Color options={options} />
-      <Counter />
-      <CounterReducer />
-      <Task />
-      <Clock />
-      <Friends />
+      <Navigation />
+      <Switch>
+        <Route path="/" exact>
+          <Comp />
+          <Task />
+        </Route>
+        <Route path="/color">
+          <Color options={options} />
+        </Route>
+        <Route path="/counters">
+          <Counter />
+          <CounterReducer />
+        </Route>
+        <Route path="/clock">
+          <Clock />
+        </Route>
+        <Route path="/phone-book" exact>
+          <Friends />
+        </Route>
+        <Route path="/phone-book/:friend">
+          <FriendCard />
+        </Route>
+        <Route path="/router">
+          <AppBar />
+        </Route>
+        <Route path="/table">
+          <TableView />
+        </Route>
+
+        <Route path="/table-fiends">
+          <BasicTable />
+        </Route>
+
+        <Route>
+          <NotFoundView />
+        </Route>
+      </Switch>
     </Layout>
   );
 }

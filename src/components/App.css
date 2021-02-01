@@ -25,19 +25,40 @@ input {
 .FriendsBox {
   display: flex;
   justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-.FriendsBox div {
-  width: 33%;
+.FriendsBox:hover {
+  background-color: #ddd;
+}
+
+.friendName {
+  width: 28%;
   text-align: left;
-  padding-left: 9%;
+}
+
+.friend {
+  width: 18%;
+  text-align: left;
 }
 
 .InputBox {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .InputBox input {
   width: 33%;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
 }

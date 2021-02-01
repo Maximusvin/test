@@ -1,59 +1,92 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import {
+  Switch,
+  Route,
+  useRouteMatch,
+  Link,
+  useLocation,
+} from 'react-router-dom';
+import initialFriends from '../DATA/Contacts.json';
 import './App.css';
-
-const initialFriends = [
-  { name: 'Максим Козлов', phone: '0979769625', job: 'ВОДКБ' },
-  { name: 'Горай Виктория', phone: '0979677292', job: 'Пироговка' },
-  { name: 'Орлов Игорь', phone: '0979769625', job: 'МКЛ1' },
-  { name: 'Тимошков Максим', phone: '0979769699', job: 'МКЛ2' },
-  { name: 'Амбарцумян Арсен', phone: '0979769625', job: 'МКЛ3' },
-  { name: 'Головащенко Александр', phone: '0979769625', job: 'ВОДКБ' },
-  { name: 'Голубева Ирина', phone: '0979769625', job: 'ВОДКБ' },
-  { name: 'Гурская Светлана', phone: '097976452', job: 'ВОДКБ' },
-  { name: 'Коробко Сергей', phone: '0979769644', job: 'МКЛ3' },
-  { name: 'Рымарчук Виталий', phone: '0979769625', job: 'МКЛ3' },
-  { name: 'Суркис Владимир', phone: '0979769625', job: 'МКЛ2' },
-  { name: 'Омельченко Алексей', phone: '0979769621', job: 'МКЛ1' },
-  { name: 'Данчук Ростислав', phone: '09797696288', job: 'ВОДКБ' },
-  { name: 'Никифоров Виталий', phone: '0979769676', job: 'МКЛ1' },
-];
 
 const Friends = () => {
   const [friends, setFriends] = useState(initialFriends);
   const [filter, setFilter] = useState('');
+  const [filter1, setFilter1] = useState('');
+  const [filter2, setFilter2] = useState('');
+  const [filter3, setFilter3] = useState('');
+  const [filter4, setFilter4] = useState('');
 
-  const visibleFriends = friends.filter(friend =>
-    friend.name.toLowerCase().includes(filter),
+  const location = useLocation();
+
+  const { url } = useRouteMatch();
+
+  const visibleFriends = friends.filter(
+    friend =>
+      friend.name.toLowerCase().includes(filter) &&
+      friend.phone.toLowerCase().includes(filter1) &&
+      friend.job.toLowerCase().includes(filter2) &&
+      friend.specialization.toLowerCase().includes(filter3) &&
+      friend.locality.toLowerCase().includes(filter4),
   );
 
   return (
-    <div className="CounterBox">
+    <div>
       <div className="InputBox">
         <input
           type="text"
-          placeholder="Фильтрация по имени"
+          placeholder="Ф-ция по имени"
           onChange={event => setFilter(event.target.value)}
           value={filter}
+          name="name"
         />
         <input
           type="text"
-          placeholder="Фильтрация по телефону"
-          onChange={event => setFilter(event.target.value)}
-          value={filter}
+          placeholder="Ф-ция по телефону"
+          onChange={event => setFilter1(event.target.value)}
+          value={filter1}
+          name="phone"
         />
         <input
           type="text"
-          placeholder="Фильтрация по месту работы"
-          onChange={event => setFilter(event.target.value)}
-          value={filter}
+          placeholder="Ф-ция по работе"
+          onChange={event => setFilter2(event.target.value)}
+          value={filter2}
+          name="job"
+        />
+        <input
+          type="text"
+          placeholder="Ф-ция по специализации"
+          onChange={event => setFilter3(event.target.value)}
+          value={filter3}
+          name="specialization"
+        />
+        <input
+          type="text"
+          placeholder="Ф-ция по городу"
+          onChange={event => setFilter4(event.target.value)}
+          value={filter4}
+          name="locality"
         />
       </div>
       <ul>
-        {visibleFriends.map((friend, index) => (
-          <li key={index} className="FriendsBox">
-            <div>{friend.name}</div>
-            <div>{friend.phone}</div>
-            <div>{friend.job}</div>
+        {visibleFriends.map(friend => (
+          <li key={friend.id} className="FriendsBox">
+            <Link
+              to={{
+                pathname: `${url}/${friend.id}`,
+                state: { from: location },
+              }}
+              className="friendName"
+            >
+              {friend.name}
+            </Link>
+            <a href={`tel:${friend.phone}`} className="friend">
+              {friend.phone}
+            </a>
+            <div className="friend">{friend.job}</div>
+            <div className="friend">{friend.specialization}</div>
+            <div className="friend">{friend.locality}</div>
           </li>
         ))}
       </ul>

@@ -21,7 +21,7 @@ const Clock = () => {
   };
 
   return (
-    <>
+    <div className="colorBox">
       <h2>Clock</h2>
       <div>
         <p>Текущее время: {time.toLocaleTimeString()}</p>
@@ -29,7 +29,7 @@ const Clock = () => {
           Stop
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
